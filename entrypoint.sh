@@ -31,10 +31,10 @@ fi
 echo ""
 
 # set path part of the ssh connection or leave it empty
-[[ -v INPUT_PATH ]] && PATH=":$INPUT_PATH" || PATH=""
+[[ -v INPUT_PATH ]] && REMOTE_PATH=":$INPUT_PATH" || REMOTE_PATH=""
 
 echo -e "${BLUE}Connecting to ${INPUT_HOST}...${NORMAL}"
-sh -c "ssh -q -t -i ~/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '${INPUT_HOST}${PATH}' < ~/script.sh"
+sh -c "ssh -q -t -i ~/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '${INPUT_HOST}${REMOTE_PATH}' < ~/script.sh"
 echo ""
 
 echo ""
