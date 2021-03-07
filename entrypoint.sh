@@ -21,7 +21,7 @@ echo '# Commands:' >> ~/script.sh
 echo "${INPUT_COMMAND}" >> ~/script.sh
 
 echo ""
-echo -e "${BLUE}Run on:${NORMAL} ${INPUT_HOSTS}"
+echo -e "${BLUE}Run on:${NORMAL} ${INPUT_HOST} in ${INPUT_PATH}"
 echo -e "${BLUE}Commands:${NORMAL}"
 if [[ "${INPUT_DEBUG}" = "true" ]] || [[ "${INPUT_DEBUG}" = "1" ]]; then
     cat ~/script.sh
