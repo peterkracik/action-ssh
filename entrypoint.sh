@@ -18,7 +18,7 @@ env -0 | while read -r -d '' line; do
 done
 echo '' >> ~/script.sh
 
-echo 'CD to the folder ${INPUT_PATH}' >> ~/script.sh
+echo '# CD to the folder ${INPUT_PATH}' >> ~/script.sh
 echo 'cd ${INPUT_PATH}' >> ~/script.sh    
 
 echo '# Commands:' >> ~/script.sh
