@@ -18,10 +18,8 @@ env -0 | while read -r -d '' line; do
 done
 echo '' >> ~/script.sh
 
-if [ -z "$INPUT_PATH" ] 
-    echo 'CD to the folder ${INPUT_PATH}' >> ~/script.sh
-    echo 'cd ${INPUT_PATH}' >> ~/script.sh     
-fi
+echo 'CD to the folder ${INPUT_PATH}' >> ~/script.sh
+echo 'cd ${INPUT_PATH}' >> ~/script.sh    
 
 echo '# Commands:' >> ~/script.sh
 echo "${INPUT_COMMAND}" >> ~/script.sh
