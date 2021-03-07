@@ -3,7 +3,8 @@
 GitHub Action (yml) to execute SSH commands on remote server(s).
 
 **Supports:** 
-- Multiple hosts
+- Single host
+- Path
 - Environment variables
 - Multiple commands
 - Private key authentication
@@ -15,21 +16,23 @@ GitHub Action (yml) to execute SSH commands on remote server(s).
 **Basic Example** 
 ```yml
 - name: Execute SSH commmands on remote server
-  uses: JimCronqvist/action-ssh@master
+  uses: peterkracik/action-ssh@master
   with:
-    hosts: 'user@domain.com'
+    host: 'user@domain.com'
+    path: '/var/www'
     privateKey: ${{ secrets.PRIVATE_KEY }}
     command: ls -lah
 ```
 
-**Advanced Example - envs, multiple hosts, multiple commands**
+**Advanced Example - envs, multiple commands**
 ```yml
 - name: Execute SSH commmands on remote server
-  uses: JimCronqvist/action-ssh@master
+  uses: peterkracik/action-ssh@master
   env:
     NAME: "Root"
   with:
-    hosts: 'user@domain.com user@domain2.com:2222'
+    host: 'user@domain2.com:2222'
+    path: '/var/www'
     privateKey: ${{ secrets.PRIVATE_KEY }}
     debug: false
     command: |
@@ -45,8 +48,11 @@ GitHub Action (yml) to execute SSH commands on remote server(s).
 Command(s) to execute on the remote server.
 
 **`hosts`**: 
-Hostname or IP address of the remote server(s). Separate multiple servers with a blank space.
-Example: "user@mydomain.com:22 user@otherdomain.com:2222"
+Hostname or IP address of the remote server.
+Example: "user@mydomain.com:22"
+
+**`path`**
+Path on the remote server
 
 **`privateKey`**: The private key (id_rsa) content for authenticating to the SSH server(s). 
 Recommended to store it as a GitHub Secret.
