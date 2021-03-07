@@ -17,6 +17,12 @@ env -0 | while read -r -d '' line; do
     [[ ! ${line} =~ ^(HOSTNAME=|HOME=|INPUT_) ]] && echo "${line%%=*}='$(echo "${line#*=}" | sed "s/'/'\\\\''/g")'" >> ~/script.sh
 done
 echo '' >> ~/script.sh
+
+if [ -z "$INPUT_PATH" ] 
+    echo 'CD to the folder ${INPUT_PATH}' >> ~/script.sh
+    echo 'cd ${INPUT_PATH}' >> ~/script.sh     
+fi
+
 echo '# Commands:' >> ~/script.sh
 echo "${INPUT_COMMAND}" >> ~/script.sh
 
@@ -31,10 +37,10 @@ fi
 echo ""
 
 # set path part of the ssh connection or leave it empty
-[[ -v INPUT_PATH ]] && REMOTE_PATH=":$INPUT_PATH" || REMOTE_PATH=""
 
-echo -e "${BLUE}Connecting to ${INPUT_HOST}${REMOTE_PATH}...${NORMAL}"
-sh -c "ssh -q -t -i ~/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '${INPUT_HOST}${REMOTE_PATH}' < ~/script.sh"
+
+echo -e "${BLUE}Connecting to ${INPUT_HOST}...${NORMAL}"
+sh -c "ssh -q -t -i ~/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '${INPUT_HOST}' < ~/script.sh"
 echo ""
 
 echo ""
