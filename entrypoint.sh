@@ -30,11 +30,12 @@ else
 fi
 echo ""
 
-for host in ${INPUT_HOSTS}; do
-  echo -e "${BLUE}Connecting to ${host}...${NORMAL}"
-  sh -c "ssh -q -t -i ~/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '${host}' < ~/script.sh"
-  echo ""
-done
+# set path part of the ssh connection or leave it empty
+[[ -v INPUT_PATH ]] && PATH=":$INPUT_PATH" || PATH=""
+
+echo -e "${BLUE}Connecting to ${host}...${NORMAL}"
+sh -c "ssh -q -t -i ~/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '${INPUT_HOSTS}${PATH}' < ~/script.sh"
+echo ""
 
 echo ""
 echo -e "${BLUE}GitHub Action completed.${NORMAL}"
