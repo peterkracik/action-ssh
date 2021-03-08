@@ -20,7 +20,6 @@ echo '' >> ~/script.sh
 
 echo '# CD to the folder ${INPUT_PATH}' >> ~/script.sh
 echo "cd ${INPUT_PATH}" >> ~/script.sh    
-echo "echo in the $(pwd)" >> ~/script.sh
 
 echo '# Commands:' >> ~/script.sh
 echo "${INPUT_COMMAND}" >> ~/script.sh
